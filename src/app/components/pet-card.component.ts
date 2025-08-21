@@ -1,7 +1,7 @@
 // src/components/pet-card/pet-card.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PetDto, PetStatus } from '../../types';
+import { PetDto, PetStatus } from '../types';
 
 @Component({
   selector: 'app-pet-card',

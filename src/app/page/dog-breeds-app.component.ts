@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 import { Subject, combineLatest, BehaviorSubject, timer, of } from 'rxjs';
 import { takeUntil, switchMap, catchError, tap, map, startWith } from 'rxjs/operators';
 
-import { PetDto, PetStatus, ItemsPerPage, FilterStateDto } from '../../types';
-import { PetService } from '../../services/pet.service';
-import { OnlineStatusService } from '../../services/online-status.service';
+import { PetDto, PetStatus, ItemsPerPage, FilterStateDto } from '../types';
+import { PetService } from '../services/pet.service';
+import { OnlineStatusService } from '../services/online-status.service';
 
-import { LoadingSpinnerComponent, LoadingBarComponent } from '../loading/loading.component';
-import { ErrorAlertComponent, OfflineAlertComponent } from '../alerts/alerts.component';
-import { PetCardComponent } from '../pet-card/pet-card.component';
-import { PaginationComponent } from '../pagination/pagination.component';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
+import { LoadingSpinnerComponent, LoadingBarComponent } from '../components/loading.component';
+import { ErrorAlertComponent, OfflineAlertComponent } from '../components/alerts.component';
+import { PetCardComponent } from '../components/pet-card.component';
+import { PaginationComponent } from '../components/pagination.component';
+import { HeaderComponent } from '../components/header.component';
+import { FooterComponent } from '../components/footer.component';
 
 @Component({
   selector: 'app-dog-breeds-app',

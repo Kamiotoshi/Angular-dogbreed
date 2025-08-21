@@ -11,8 +11,8 @@ export class OnlineStatusService {
   private isOnlineSubject = new BehaviorSubject<boolean>(navigator.onLine);
   public isOnline$ = this.isOnlineSubject.asObservable();
 
-  private readonly petStoreApiUrl = 'https://petstore.swagger.io/v2/pet/findByStatus?status=available';
-  private readonly timeoutDuration = 5000; // Giảm timeout xuống để phản hồi nhanh hơn
+  private readonly petStoreApiUrl = '/v2/pet/findByStatus?status=available'; // Sử dụng proxy path
+  private readonly timeoutDuration = 5000; // Timeout 5 giây
   private readonly checkInterval = 10000; // Check mỗi 10 giây
 
   constructor(private http: HttpClient) {
@@ -76,44 +76,15 @@ export class OnlineStatusService {
 
   /**
    * Kiểm tra kết nối API thực tế
-   * Sử dụng HEAD request để tiết kiệm băng thông
+   * Sử dụng GET request đơn giản
    */
   private checkApiConnectivity(): Observable<boolean> {
-    return this.http.head(this.petStoreApiUrl, {
-      observe: 'response',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    }).pipe(
+    return this.http.get(this.petStoreApiUrl, { responseType: 'text' }).pipe( // Sử dụng text để tránh parsing JSON
       timeout(this.timeoutDuration),
-      map(response => {
-        const isSuccess = response.status >= 200 && response.status < 300;
-        console.log(`API connectivity check: ${isSuccess ? 'Success' : 'Failed'} (${response.status})`);
-        return isSuccess;
-      }),
+      map(() => true), // Nếu không lỗi, coi như kết nối thành công
       catchError((error) => {
-        console.warn('API HEAD request failed, trying GET as fallback:', error.message);
-
-        // Fallback: thử GET request với limit
-        return this.http.get(this.petStoreApiUrl, {
-          observe: 'response',
-          headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache'
-          }
-        }).pipe(
-          timeout(this.timeoutDuration),
-          map(response => {
-            const isSuccess = response.status >= 200 && response.status < 300;
-            console.log(`API GET fallback: ${isSuccess ? 'Success' : 'Failed'} (${response.status})`);
-            return isSuccess;
-          }),
-          catchError((fallbackError) => {
-            console.error('Both HEAD and GET requests failed:', fallbackError.message);
-            return of(false);
-          })
-        );
+        console.warn('API request failed:', error.message);
+        return of(false);
       })
     );
   }
