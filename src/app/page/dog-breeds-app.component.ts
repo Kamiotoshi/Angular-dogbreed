@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Subject, combineLatest, BehaviorSubject, timer, of } from 'rxjs';
 import { takeUntil, switchMap, catchError, tap, map, startWith } from 'rxjs/operators';
 
-import { PetDto, PetStatus, ItemsPerPage, FilterStateDto } from '../types';
+import { PetDto, PetStatus, ItemsPerPage, FilterStateDto } from '../models/pet.model';
 import { PetService } from '../services/pet.service';
 import { OnlineStatusService } from '../services/online-status.service';
 

@@ -1,4 +1,4 @@
-// src/types/index.ts - Angular version
+// src/types/pet.model.ts - Angular version
 
 /**
  * Category DTO - Đại diện cho category data từ API

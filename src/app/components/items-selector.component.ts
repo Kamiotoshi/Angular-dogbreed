@@ -2,7 +2,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ItemsPerPage } from '../types';
+import { ItemsPerPage } from '../models/pet.model';
 
 @Component({
   selector: 'app-items-selector',

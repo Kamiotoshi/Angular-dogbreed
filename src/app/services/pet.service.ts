@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, timeout } from 'rxjs/operators';
-import {PetDto, PetStatus, ApiErrorDto, CategoryDto, TagDto} from '../types/index';
+import {PetDto, PetStatus, ApiErrorDto, CategoryDto, TagDto} from '../models/pet.model';
 
 interface RawPetData {
   id: number;

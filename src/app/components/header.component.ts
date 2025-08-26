@@ -2,7 +2,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Wifi, WifiOff } from 'lucide-angular';
-import { PetStatus, ItemsPerPage } from '../types';
+import { PetStatus, ItemsPerPage } from '../models/pet.model';
 import { StatusFilterComponent } from './status-filter.component';
 
 @Component({

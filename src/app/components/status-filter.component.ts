@@ -1,7 +1,7 @@
 // src/components/status-filter/status-filter.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PetStatus, ItemsPerPage } from '../types';
+import { PetStatus, ItemsPerPage } from '../models/pet.model';
 import { ItemsSelectorComponent } from './items-selector.component';
 
 @Component({
